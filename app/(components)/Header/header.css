@@ -1,0 +1,36 @@
+aside{
+    width: 200px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+aside h2{
+    text-align: center;
+    font-size: 2em;
+}
+aside hr{
+    width: 100%;
+}
+
+aside .div-links{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+aside .div-links .links{
+    text-decoration: none;
+    color: var(--texto-principal);
+    border-radius: 2px;
+    padding: 10px;
+    width: 100%;
+    transition: 0.2s;
+}
+aside .div-links .links:hover{
+    background-color: var(--primaria_suave);
+    color: var(--secundaria);
+}
+aside .div-links .links span{
+    margin-left: 10px;
+}

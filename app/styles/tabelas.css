@@ -1,0 +1,56 @@
+
+.tabela-container {
+  width: 100%;
+}
+
+.tabela-scroll {
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+/* Estilos da tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: var(--primaria);
+  color: var(--fundo_principal);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+th, td {
+  padding: 12px 10px;
+  text-align: center;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--bordas_linhas);
+  transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: var(--primaria_suave);
+  color: var(--fundo_principal);
+}
+
+
+/* ===== BOTÕES ===== */
+td .btn_editar, .btn_excluir {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+td .btn_editar {
+  color: var(--primaria);
+}
+
+td .btn_excluir {
+  color: var(--erro);
+}
