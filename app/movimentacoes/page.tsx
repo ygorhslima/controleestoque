@@ -6,7 +6,7 @@ export default function Movimentacoes(){
     return(
         <>
             <FormMovimentacoes/>
-            <TabelaMovimentacoes/>
+            {TabelaMovimentacoes()}
         </>
     )
 }
