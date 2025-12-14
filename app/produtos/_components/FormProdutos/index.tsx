@@ -1,8 +1,6 @@
 "use client"
-
 import '../../../styles/formularios.css'
 import { useState } from "react";
-import { cadProduto } from '@/app/produtos/_components/FormProdutos/cadProduto'; // importando função do backend
 
 export default function FormProdutos(){
     
@@ -12,33 +10,8 @@ export default function FormProdutos(){
   const [preco, setPreco] = useState("");
   const [status,setStatus] = useState("");
 
-  const handleSubmit = async(e:React.FormEvent)=>{
-    e.preventDefault();
-    setStatus("Processando...");
-    const data = {
-      nome:nome,
-      categoria:categoria,
-      quantidade:parseFloat(quantidade),
-      preco:parseFloat(preco),
-    }
-
-    // vai executar a função de cadProduto como uma função normal
-    const result = await cadProduto(data)
-    // lida com resultados
-    if(result.success){
-      setStatus("Cadastro realizado com sucesso");
-      // zerando os dados do formulário
-      setNome("");
-      setCategoria("");
-      setQuantidade("");
-      setPreco("");
-    }else{
-      setStatus(`Erro: ${result.message}`);
-    }
-  }
-
   return(
-      <form onSubmit={handleSubmit}>
+      <form>
         <h2>Novo Produto</h2>
         
         <div className="container-input">
