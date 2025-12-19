@@ -1,6 +1,6 @@
 "use client"
 import '../../../styles/formularios.css'
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 export default function FormProdutos(){
     
@@ -8,10 +8,42 @@ export default function FormProdutos(){
   const [categoria, setCategoria] = useState("");
   const [quantidade, setQuantidade] = useState("");
   const [preco, setPreco] = useState("");
-  const [status,setStatus] = useState("");
+
+  function EnviarDados(e:FormEvent){
+    e.preventDefault()
+    
+    const dados = {
+      id:Date.now(),
+      nome: nome,
+      categoria:categoria,
+      quantidade: quantidade,
+      preco: preco,
+    }
+
+    let salvo = localStorage.getItem("produtos");
+    let listaAntiga = [];
+
+    try{
+      let conteudo = JSON.parse(salvo || "[]");
+      listaAntiga = Array.isArray(conteudo) ? conteudo : [];      
+    }catch(error){
+      listaAntiga = [];
+    }
+
+    const listaNova = [...listaAntiga, dados];
+    localStorage.setItem("produtos",JSON.stringify(listaNova));
+
+    setNome("")
+    setCategoria("")
+    setQuantidade("")
+    setPreco("")
+
+    alert("produto salvo com sucesso")
+    window.location.reload()
+  }
 
   return(
-      <form>
+      <form onSubmit={EnviarDados}>
         <h2>Novo Produto</h2>
         
         <div className="container-input">
@@ -67,8 +99,6 @@ export default function FormProdutos(){
         <div className="container-form-button">
           <button type="submit" className="btn_criar">Criar</button>
         </div>
-
-        {status && <p>{status}</p>}
       </form>
     )
 }

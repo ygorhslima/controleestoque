@@ -1,78 +1,24 @@
+"use client"
+import { useState, useEffect } from 'react'
 import '../../../styles/tabelas.css'
 import {FaPen, FaTrash} from 'react-icons/fa'
-let produtos = [
-    {
-        "id": 1,
-        "nome": "Caderno Espiral",
-        "categoria": "Papelaria",
-        "quantidade_em_estoque": 150,
-        "preco": 12.50
-    },
-    {
-        "id": 2,
-        "nome": "Caneta Esferográfica Azul",
-        "categoria": "Papelaria",
-        "quantidade_em_estoque": 500,
-        "preco": 2.25
-    },
-    {
-        "id": 3,
-        "nome": "Mouse Sem Fio",
-        "categoria": "Eletrônicos",
-        "quantidade_em_estoque": 45,
-        "preco": 65.90
-    },
-    {
-        "id": 4,
-        "nome": "Monitor LED 24 polegadas",
-        "categoria": "Eletrônicos",
-        "quantidade_em_estoque": 18,
-        "preco": 899.00
-    },
-    {
-        "id": 5,
-        "nome": "Pneu Aro 15",
-        "categoria": "Automotivo",
-        "quantidade_em_estoque": 72,
-        "preco": 350.00
-    },
-    {
-        "id": 6,
-        "nome": "Kit de Ferramentas (100 peças)",
-        "categoria": "Automotivo",
-        "quantidade_em_estoque": 30,
-        "preco": 149.99
-    },
-    {
-        "id": 7,
-        "nome": "Cadeira Ergonômica Escritório",
-        "categoria": "Mobiliário",
-        "quantidade_em_estoque": 22,
-        "preco": 520.50
-    },
-    {
-        "id": 8,
-        "nome": "Luminária de Mesa LED",
-        "categoria": "Mobiliário",
-        "quantidade_em_estoque": 85,
-        "preco": 45.00
-    },
-    {
-        "id": 9,
-        "nome": "Teclado Mecânico Gamer",
-        "categoria": "Eletrônicos",
-        "quantidade_em_estoque": 38,
-        "preco": 289.90
-    },
-    {
-        "id": 10,
-        "nome": "Resma de Papel A4",
-        "categoria": "Papelaria",
-        "quantidade_em_estoque": 210,
-        "preco": 25.00
-    }
-]
-export default async function TabelaProdutos(){
+
+export default function TabelaProdutos(){
+
+    const [produtos, setProdutos] = useState<any[]>([])
+
+    useEffect(()=>{
+        // obter os dados do localStorage
+        const dados = localStorage.getItem("produtos")
+        if(dados){
+            // transformar de volta para objeto
+            const dadosConvertidos = JSON.parse(dados)
+            const listaProdutos = Array.isArray(dadosConvertidos) ? dadosConvertidos : [dadosConvertidos]
+
+            setProdutos(listaProdutos)
+            console.log(produtos)
+        }
+    },[])
   
     return(
         <div className="tabela-container">
@@ -88,16 +34,26 @@ export default async function TabelaProdutos(){
                         </tr>
                     </thead>
                     <tbody>
-                        {produtos.map(({id,nome,categoria,quantidade_em_estoque,preco}:any)=>(
-                            <tr key={id}>
-                                <td>{nome}</td>
-                                <td>{categoria}</td>
-                                <td>{quantidade_em_estoque}</td>
-                                <td>R$ {preco.toFixed(2)}</td>
-                                <button className="btn_editar"><FaPen/></button>
-                                <button className="btn_excluir"><FaTrash/></button>
+                    {
+                      produtos.length > 0 ? (
+                        produtos.map((dados, index)=>(
+                            <tr key={index}>
+                                <td>{dados.nome}</td>
+                                <td>{dados.categoria}</td>
+                                <td>{dados.quantidade}</td>
+                                <td>R$ {dados.preco}</td>
+                                <td>
+                                    <button className="btn_editar"><FaPen /></button>
+                                    <button className="btn_excluir"><FaTrash /></button>
+                                </td>
                             </tr>
-                        ))}
+                        ))
+                      ):(
+                        <tr>
+                            <td colSpan={5} style={{ textAlign: 'center' }}>Nenhum produto encontrado.</td>
+                        </tr>
+                      )
+                    }
                     </tbody>
                 </table>
             </div>
