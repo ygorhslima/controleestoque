@@ -1,5 +1,19 @@
+"use client"
+import { useState, useEffect } from 'react'
 import '../../../styles/tabelas.css'
+
 export default function TabelaMovimentacoes(){
+
+    const [movimentacoes,setMovimentacoes] = useState([]);
+    
+    useEffect(() => {
+        const dadosSalvos = localStorage.getItem('movimentacoes');
+        
+        if (dadosSalvos) {
+            setMovimentacoes(JSON.parse(dadosSalvos));
+        }
+    }, []);
+
     return(
         <div className='tabela-container'>
             <div className="tabela-scroll">
@@ -13,18 +27,23 @@ export default function TabelaMovimentacoes(){
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><i className='fa-solid fa-arrow-up'></i>Entrada</td>
-                            <td>Notebook Dell Inspiron</td>
-                            <td>10</td>
-                            <td>2025-11-06 12:15</td>
-                        </tr>
-                        <tr>
-                            <td><i className='fa-solid fa-arrow-down'></i>Saída</td>
-                            <td>Mouse Logitech MX</td>
-                            <td>5</td>
-                            <td>2025-11-06 12:15</td>
-                        </tr>
+                       {movimentacoes.length > 0 ? (
+                            movimentacoes.map((mov, index) => (
+                                <tr key={index}>
+                                    <td>
+                                        <i className={`fa-solid ${mov.tipo === 'entrada' ? 'fa-arrow-up' : 'fa-arrow-down'}`}></i>
+                                        {mov.tipo.charAt(0).toUpperCase() + mov.tipo.slice(1)}
+                                    </td>
+                                    <td>{mov.produto}</td>
+                                    <td>{mov.quantidade}</td>
+                                    <td>{mov.data}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="4" style={{ textAlign: 'center' }}>Nenhuma movimentação registrada.</td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </div>
