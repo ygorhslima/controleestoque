@@ -1,34 +1,19 @@
 "use client"
 import '../../../styles/formularios.css'
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 
 export default function FormProdutos(){
-  // criar um novo id
-  const [id, setId] = useState<number | null>(null);
+    
   const [nome, setNome] = useState("");
   const [categoria, setCategoria] = useState("");
   const [quantidade, setQuantidade] = useState("");
   const [preco, setPreco] = useState("");
 
-
-  // efeito para carregar dados quando estiver em modo edição
-  useEffect(()=>{
-    const editando = localStorage.getItem("produto_editando");
-    if(editando){
-      const p = JSON.parse(editando);
-      setId(p.id);
-      setNome(p.nome);
-      setCategoria(p.categoria);
-      setQuantidade(p.quantidade);
-      setPreco(p.preco);
-    }
-  },[])
-
   function EnviarDados(e:FormEvent){
     e.preventDefault()
     
     const dados = {
-      id:id || Date.now(),
+      id:Date.now(),
       nome: nome,
       categoria:categoria,
       quantidade: quantidade,
@@ -36,31 +21,30 @@ export default function FormProdutos(){
     }
 
     let salvo = localStorage.getItem("produtos");
-    let lista = (salvo && salvo !== "undefined") ? JSON.parse(salvo) : [];
+    let listaAntiga = [];
 
-    if(id){
-      // MODO EDIÇÃO: substitui o item antigo pelo novo no item
-      lista = lista.map(item => item.id === id ? dados : item);
-      localStorage.removeItem("produto_editando")
-    }else{
-      lista.push(dados)
+    try{
+      let conteudo = JSON.parse(salvo || "[]");
+      listaAntiga = Array.isArray(conteudo) ? conteudo : [];      
+    }catch(error){
+      listaAntiga = [];
     }
 
-    localStorage.setItem("produtos",JSON.stringify(lista));
+    const listaNova = [...listaAntiga, dados];
+    localStorage.setItem("produtos",JSON.stringify(listaNova));
 
-    setId(null);
-    setNome("");
-    setCategoria("");
-    setQuantidade("");
-    setPreco("");
+    setNome("")
+    setCategoria("")
+    setQuantidade("")
+    setPreco("")
 
-    alert(id ? "Produto atualizado!":"Produto salvo");
-    window.location.reload();
+    alert("produto salvo com sucesso")
+    window.location.reload()
   }
 
   return(
       <form onSubmit={EnviarDados}>
-        <h2>{id ? "Editar Produto" : "Novo Produto"}</h2>
+        <h2>Novo Produto</h2>
         
         <div className="container-input">
           <label htmlFor="txt_nome">Nome</label>
@@ -113,20 +97,7 @@ export default function FormProdutos(){
         </div>
 
         <div className="container-form-button">
-          <button type="submit" className={id ? "btn_editar":"btn_criar"}>
-            {id ? "Salvar Alterações" : "Criar"}
-          </button>
-
-          {id && (
-            <button type='button' onClick={()=>{
-              localStorage.removeItem("produto_editando");
-              window.location.reload();
-            }}
-            style={{marginLeft:"10px"}}
-            >
-              Cancelar
-            </button>
-          )}
+          <button type="submit" className="btn_criar">Criar</button>
         </div>
       </form>
     )
