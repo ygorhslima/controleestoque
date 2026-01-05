@@ -1,24 +1,8 @@
 "use client"
-import { useState, useEffect } from 'react'
 import '../../../styles/tabelas.css'
 import {FaPen, FaTrash} from 'react-icons/fa'
 
 export default function TabelaProdutos(){
-
-    const [produtos, setProdutos] = useState<any[]>([])
-
-    useEffect(()=>{
-        // obter os dados do localStorage
-        const dados = localStorage.getItem("produtos")
-        if(dados){
-            // transformar de volta para objeto
-            const dadosConvertidos = JSON.parse(dados)
-            const listaProdutos = Array.isArray(dadosConvertidos) ? dadosConvertidos : [dadosConvertidos]
-
-            setProdutos(listaProdutos)
-            console.log(produtos)
-        }
-    },[])
   
     return(
         <div className="tabela-container">
@@ -34,7 +18,7 @@ export default function TabelaProdutos(){
                         </tr>
                     </thead>
                     <tbody>
-                    {
+                    {/*
                       produtos.length > 0 ? (
                         produtos.map((dados, index)=>(
                             <tr key={index}>
@@ -53,6 +37,7 @@ export default function TabelaProdutos(){
                             <td colSpan={5} style={{ textAlign: 'center' }}>Nenhum produto encontrado.</td>
                         </tr>
                       )
+                    */
                     }
                     </tbody>
                 </table>

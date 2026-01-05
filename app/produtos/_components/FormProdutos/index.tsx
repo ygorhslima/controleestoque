@@ -9,41 +9,8 @@ export default function FormProdutos(){
   const [quantidade, setQuantidade] = useState("");
   const [preco, setPreco] = useState("");
 
-  function EnviarDados(e:FormEvent){
-    e.preventDefault()
-    
-    const dados = {
-      id:Date.now(),
-      nome: nome,
-      categoria:categoria,
-      quantidade: quantidade,
-      preco: preco,
-    }
-
-    let salvo = localStorage.getItem("produtos");
-    let listaAntiga = [];
-
-    try{
-      let conteudo = JSON.parse(salvo || "[]");
-      listaAntiga = Array.isArray(conteudo) ? conteudo : [];      
-    }catch(error){
-      listaAntiga = [];
-    }
-
-    const listaNova = [...listaAntiga, dados];
-    localStorage.setItem("produtos",JSON.stringify(listaNova));
-
-    setNome("")
-    setCategoria("")
-    setQuantidade("")
-    setPreco("")
-
-    alert("produto salvo com sucesso")
-    window.location.reload()
-  }
-
   return(
-      <form onSubmit={EnviarDados}>
+      <form>
         <h2>Novo Produto</h2>
         
         <div className="container-input">

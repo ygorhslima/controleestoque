@@ -4,16 +4,7 @@ import '../../../styles/tabelas.css'
 
 export default function TabelaMovimentacoes(){
 
-    const [movimentacoes,setMovimentacoes] = useState([]);
-    
-    useEffect(() => {
-        const dadosSalvos = localStorage.getItem('movimentacoes');
-        
-        if (dadosSalvos) {
-            setMovimentacoes(JSON.parse(dadosSalvos));
-        }
-    }, []);
-
+  
     return(
         <div className='tabela-container'>
             <div className="tabela-scroll">
@@ -27,7 +18,7 @@ export default function TabelaMovimentacoes(){
                         </tr>
                     </thead>
                     <tbody>
-                       {movimentacoes.length > 0 ? (
+                       {/*movimentacoes.length > 0 ? (
                             movimentacoes.map((mov, index) => (
                                 <tr key={index}>
                                     <td>
@@ -43,7 +34,7 @@ export default function TabelaMovimentacoes(){
                             <tr>
                                 <td colSpan="4" style={{ textAlign: 'center' }}>Nenhuma movimentação registrada.</td>
                             </tr>
-                        )}
+                        )*/}
                     </tbody>
                 </table>
             </div>
