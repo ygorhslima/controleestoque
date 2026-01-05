@@ -2,10 +2,6 @@
 
 # documentação do meu projeto
 
-é um projeto fullstack prático para controle de estoque, feito para treinar NextJS e express, dois frameworks importantes para desenvolvedores JavaScript para criar um sistema completo e simples.
-
-# No Frontend
-
 ele funciona de forma simples, criei 3 áreas
 
 - Início: onde mostra o total de produtos, quantos estão em estoque e a última movimentação feita, obtendo os dados da data
