@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Controle de Estoque
 
-## Getting Started
+# documentação do meu projeto
 
-First, run the development server:
+é um projeto fullstack prático para controle de estoque, feito para treinar NextJS e NestJS, dois frameworks importantes para desenvolvedores JavaScript para criar um sistema completo e robusto. Os dois utilizam o TypeScript, o que quer dizer mais segurança na aplicação, por usar tipagem, e o NestJS também utiliza conceitos como decoradores que abstraem funcionalidades internas no back end, o que facilita o desenvolvimento e o foco em criar as regras de negócio.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# No Frontend
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ele funciona de forma simples, criei 3 áreas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Início: onde mostra o total de produtos, quantos estão em estoque e a última movimentação feita, obtendo os dados da data
+- Produtos: esta área temos um simples formulário contendo informações sobre o nome, categoria, quantidade e preço do produto, o botão de criar e abaixo do formulário temos uma tabela, que informa quais são os dados cadastrados e no final de cada linha duas ações, que seria editar e excluir o produto
+- movimentações: esta área mostra a mesma estrutura de formulário e tabela, onde no formulário temos informações sobre o tipo de movimentação (se é entrada ou saída), o produto a ser selecionado, neste caso mostra dentro dele um select do nome do produto, e a quantidade de produtos que vão sair ou entrar e na tabela abaixo vai mostrar as informações do tipo, o produto, quantidade e a data que foi feita a criação da movimentação
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## No Backend
 
-To learn more about Next.js, take a look at the following resources:
+primeiro instalei o prisma, ORM muito interessante para simplificar a criação de tabelas no banco de dados
+e fiz as configurações de ambiente e criação dos modelos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Model: no banco de dados criei duas tabelas, produtos e movimentações, utilizando o Prisma como ORM para tratar os dados de forma mais simples
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Routes:
 
-## Deploy on Vercel
+GET /produtos: Retorna todos os produtos (usado na tabela e no select de movimentações).
+POST /produtos: Cria um novo produto.
+PUT /produtos/:id: Atualiza os dados (Ação do botão Editar).
+DELETE /produtos/:id: Remove o produto (Ação do botão Excluir).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+GET /movimentacoes: Retorna o histórico para a tabela.
+POST /movimentacoes: Cria a movimentação e dispara a atualização de saldo no produto relacionado.
