@@ -1,0 +1,36 @@
+import { produtosDto } from "./produtos/produtos.interface";
+
+const dadosProdutos: produtosDto[] = [
+  { id: 1, nome: "Notebook Dell Inspiron", categoria: "Informática", preco: 4200.9, quantidade: 10 },
+  { id: 2, nome: "Mouse Logitech", categoria: "Informática", preco: 120.5, quantidade: 50 },
+  { id: 3, nome: "Teclado Mecânico Redragon", categoria: "Informática", preco: 350.0, quantidade: 30 },
+  { id: 4, nome: "Monitor LG 24'", categoria: "Informática", preco: 980.0, quantidade: 15 },
+  { id: 5, nome: "Smartphone Samsung A54", categoria: "Telefonia", preco: 2100.0, quantidade: 20 },
+  { id: 6, nome: "Fone Bluetooth JBL", categoria: "Áudio", preco: 399.99, quantidade: 40 },
+  { id: 7, nome: "Caixa de Som Sony", categoria: "Áudio", preco: 650.0, quantidade: 12 },
+  { id: 8, nome: "TV Samsung 50'", categoria: "Eletrônicos", preco: 2800.0, quantidade: 8 },
+  { id: 9, nome: "Geladeira Brastemp", categoria: "Eletrodomésticos", preco: 3900.0, quantidade: 5 },
+  { id: 10, nome: "Micro-ondas Electrolux", categoria: "Eletrodomésticos", preco: 720.0, quantidade: 18 },
+  { id: 11, nome: "Liquidificador Philips", categoria: "Eletrodomésticos", preco: 280.0, quantidade: 25 },
+  { id: 12, nome: "Cafeteira Nespresso", categoria: "Eletrodomésticos", preco: 520.0, quantidade: 14 },
+  { id: 13, nome: "Ventilador Arno", categoria: "Eletrodomésticos", preco: 230.0, quantidade: 22 },
+  { id: 14, nome: "Fogão Consul 4 bocas", categoria: "Eletrodomésticos", preco: 1350.0, quantidade: 6 },
+  { id: 15, nome: "Tênis Nike Air", categoria: "Calçados", preco: 480.0, quantidade: 35 },
+  { id: 16, nome: "Tênis Adidas Run", categoria: "Calçados", preco: 420.0, quantidade: 28 },
+  { id: 17, nome: "Camisa Polo Masculina", categoria: "Vestuário", preco: 89.9, quantidade: 60 },
+  { id: 18, nome: "Calça Jeans Feminina", categoria: "Vestuário", preco: 159.9, quantidade: 45 },
+  { id: 19, nome: "Jaqueta Corta Vento", categoria: "Vestuário", preco: 220.0, quantidade: 20 },
+  { id: 20, nome: "Relógio Casio", categoria: "Acessórios", preco: 199.9, quantidade: 32 },
+  { id: 21, nome: "Mochila Escolar", categoria: "Acessórios", preco: 149.9, quantidade: 27 },
+  { id: 22, nome: "Óculos de Sol Ray-Ban", categoria: "Acessórios", preco: 650.0, quantidade: 10 },
+  { id: 23, nome: "Perfume Malbec", categoria: "Perfumaria", preco: 189.9, quantidade: 40 },
+  { id: 24, nome: "Perfume Kaiak", categoria: "Perfumaria", preco: 169.9, quantidade: 38 },
+  { id: 25, nome: "Creme Hidratante Nivea", categoria: "Cosméticos", preco: 32.5, quantidade: 80 },
+  { id: 26, nome: "Shampoo Pantene", categoria: "Cosméticos", preco: 28.9, quantidade: 70 },
+  { id: 27, nome: "Livro Clean Code", categoria: "Livros", preco: 120.0, quantidade: 16 },
+  { id: 28, nome: "Livro JavaScript Avançado", categoria: "Livros", preco: 98.0, quantidade: 21 },
+  { id: 29, nome: "Cadeira Gamer", categoria: "Móveis", preco: 1100.0, quantidade: 9 },
+  { id: 30, nome: "Mesa de Escritório", categoria: "Móveis", preco: 750.0, quantidade: 11 },
+];
+
+export { dadosProdutos };

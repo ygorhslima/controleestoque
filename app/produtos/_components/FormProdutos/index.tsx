@@ -2,15 +2,53 @@
 import '../../../styles/formularios.css'
 import { FormEvent, useState } from "react";
 
-export default function FormProdutos(){
+interface Props {
+  aoCadastrar: () => void;
+}
+
+export default function FormProdutos({aoCadastrar}:Props){
     
   const [nome, setNome] = useState("");
   const [categoria, setCategoria] = useState("");
   const [quantidade, setQuantidade] = useState("");
   const [preco, setPreco] = useState("");
 
+  async function handleSubmit(e:FormEvent){
+    e.preventDefault();
+    const novoProduto = {
+      nome,
+      categoria,
+      quantidade:Number(quantidade),
+      preco:Number(preco)
+    }
+
+    try {
+      const response = await fetch("http://localhost:3030/produtos",{
+        method:"POST",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(novoProduto),
+      })
+
+      if(response.ok){  
+        aoCadastrar()
+        // limpar os campos
+        setNome("")
+        setCategoria("")
+        setQuantidade("")
+        setPreco("")
+      }else{
+        alert("Erro ao cadastar o produto");
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+      alert("Servidor offline ou erro de rede.");
+    }
+  }
+
   return(
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>Novo Produto</h2>
         
         <div className="container-input">
