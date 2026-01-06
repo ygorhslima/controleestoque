@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function Produtos() {
   const [produtos, setProdutos] = useState<produtosDto[]>([]);
+  const [produtoParaEditar, setProdutoParaEditar] = useState<produtosDto | null>(null);
 
   //função para buscar dados do backend
   const carregarProdutos = useCallback(async () => {
@@ -25,8 +26,16 @@ export default function Produtos() {
 
   return (
     <>
-      <FormProdutos aoCadastrar={carregarProdutos}/>
-      <TabelaProdutos produtos={produtos} atualizar={carregarProdutos} />
+      <FormProdutos
+        aoCadastrar={carregarProdutos}
+        produtoParaEditar={produtoParaEditar}
+        limparEdicao={() => setProdutoParaEditar(null)}
+      />
+      <TabelaProdutos
+        produtos={produtos}
+        atualizar={carregarProdutos}
+        aoClicarEditar={(p) => setProdutoParaEditar(p)}
+      />
     </>
   );
 }

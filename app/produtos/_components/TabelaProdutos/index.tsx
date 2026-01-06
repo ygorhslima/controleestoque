@@ -1,31 +1,35 @@
 "use client";
 import { useEffect, useState } from "react";
 import "../../../styles/tabelas.css";
-import { FaPen, FaTrash } from "react-icons/fa";
+import { FaPen, FaTrash, FaFilter } from "react-icons/fa";
 import { produtosDto } from "@/backend/produtos/produtos.interface";
 
 interface Props {
   produtos: produtosDto[];
   atualizar: () => void;
+  aoClicarEditar: (produto: produtosDto) => void; // Passo 1: Definir a prop
 }
 
-export default function TabelaProdutos({ produtos, atualizar }: Props) {
+export default function TabelaProdutos({ produtos, atualizar, aoClicarEditar }: Props) {
   const handleExcluir = async (id: number) => {
     if (!confirm("Excluir Produto?")) return;
     await fetch(`http://localhost:3030/produtos/${id}`, { method: "DELETE" });
     atualizar();
   };
 
+
   return (
     <div className="tabela-container">
       <div className="tabela-scroll">
+      <div>
+      </div>
         <table>
           <thead>
             <tr>
-              <th>Nome do Produto</th>
-              <th>Categoria</th>
-              <th>Quantidade</th>
-              <th>Preço</th>
+              <th>Nome do Produto <button><FaFilter/></button></th>
+              <th>Categoria <button><FaFilter/></button></th>
+              <th>Quantidade <button><FaFilter/></button></th>
+              <th>Preço <button><FaFilter/></button></th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -43,7 +47,7 @@ export default function TabelaProdutos({ produtos, atualizar }: Props) {
                     })}
                   </td>
                   <td>
-                    <button className="btn_editar" title="Editar">
+                    <button className="btn_editar" title="Editar" onClick={()=>aoClicarEditar(dados)}>
                       <FaPen />
                     </button>
                     <button

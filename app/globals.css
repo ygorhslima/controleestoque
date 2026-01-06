@@ -25,7 +25,7 @@
 
   /* Tipografia */
   --texto_principal: #1E293B;
-  --texto_secundario: #64748B;
+  --texto_secundario: #4b535e;
 
   /* Fontes */
   --fonte_titulo: 'Poppins', sans-serif;
@@ -91,7 +91,8 @@ h1{
   /* grid-column: 2 / 3; (Implícito por estar na segunda posição) */
   background-color: var(--secundaria);
   overflow: auto;
-  padding: 20px;
+  padding: 50px;
+  margin-bottom:70px ;
   display: flex; /* Mantido para o layout interno do conteúdo principal */
   flex-direction: column;
 }
