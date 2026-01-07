@@ -8,6 +8,8 @@ export default function FormMovimentacoes() {
   const [produtoSelecionado, setProdutoSelecionado] = useState("");
   const [quantidade, setQuantidade] = useState("");
 
+
+
   return (
     <form>
       <h2>Nova Movimentação</h2>
@@ -29,6 +31,7 @@ export default function FormMovimentacoes() {
           onChange={(e) => setProdutoSelecionado(e.target.value)}
         >
           <option value="">Selecione o Produto</option>
+          
         </select>
       </div>
 

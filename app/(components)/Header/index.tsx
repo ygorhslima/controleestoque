@@ -1,4 +1,9 @@
 import Link from 'next/link'
+
+import { FaBox } from 'react-icons/fa'
+import { FaHome } from 'react-icons/fa'
+import { FaArrowsAlt } from 'react-icons/fa'
+
 import './header.css'
 
 export default function Header(){
@@ -8,17 +13,17 @@ export default function Header(){
             <hr />
             <div className="div-links">
                 <Link href={"/"} className="links"> 
-                    <i className="fa-solid fa-home"></i>
+                    <FaHome/>
                     <span>Início</span>
                 </Link>
                 
                 <Link href={"/produtos"} className="links">
-                    <i className="fa-solid fa-box"></i>
+                    <FaBox/>
                     <span>Produtos</span>
                 </Link>
                 
                 <Link href={"/movimentacoes"} className="links">
-                    <i className="fa-solid fa-arrows"></i>
+                    <FaArrowsAlt/>
                     <span>Movimentações</span>
                 </Link>
             </div>

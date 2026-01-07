@@ -1,8 +1,14 @@
 "use client"
-import { useState, useEffect } from 'react'
 import '../../../styles/tabelas.css'
+import { movimentacoesDto } from '@/backend/movimentacoes/movimentacoes.interface'
 
-export default function TabelaMovimentacoes(){
+
+interface Props {
+  movimentacao: movimentacoesDto[];
+  atualizarMovimentacoes: () => void;
+}
+
+export default function TabelaMovimentacoes({movimentacao, atualizarMovimentacoes}:Props){
 
   
     return(
@@ -18,23 +24,23 @@ export default function TabelaMovimentacoes(){
                         </tr>
                     </thead>
                     <tbody>
-                       {/*movimentacoes.length > 0 ? (
-                            movimentacoes.map((mov, index) => (
+                       {movimentacao.length > 0 ? (
+                            movimentacao.map((mov, index) => (
                                 <tr key={index}>
                                     <td>
-                                        <i className={`fa-solid ${mov.tipo === 'entrada' ? 'fa-arrow-up' : 'fa-arrow-down'}`}></i>
+                                        <i className={`fa-solid ${mov.tipo === 'Entrada' ? 'fa-arrow-up' : 'fa-arrow-down'}`}></i>
                                         {mov.tipo.charAt(0).toUpperCase() + mov.tipo.slice(1)}
                                     </td>
-                                    <td>{mov.produto}</td>
+                                    <td>{mov.produto.nome}</td>
                                     <td>{mov.quantidade}</td>
                                     <td>{mov.data}</td>
                                 </tr>
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="4" style={{ textAlign: 'center' }}>Nenhuma movimentação registrada.</td>
+                                <td colSpan={4} style={{ textAlign: 'center' }}>Nenhuma movimentação registrada.</td>
                             </tr>
-                        )*/}
+                        )}
                     </tbody>
                 </table>
             </div>
